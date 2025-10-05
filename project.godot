@@ -20,4 +20,4 @@ Screenshots="*res://addons/screenshots/autoload/shutter_window/shutter_window.ts
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/explore-editor-theme/plugin.cfg", "res://addons/kenyoni/plugin_reloader/plugin.cfg", "res://addons/screenshots/plugin.cfg")
+enabled=PackedStringArray("res://addons/screenshots/plugin.cfg")
