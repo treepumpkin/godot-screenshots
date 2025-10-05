@@ -1,0 +1,23 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="Screenshots"
+config/features=PackedStringArray("4.5", "Forward Plus")
+config/icon="res://store_assets/icon.svg"
+
+[autoload]
+
+Screenshots="*res://addons/screenshots/autoload/shutter_window/shutter_window.tscn"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/explore-editor-theme/plugin.cfg", "res://addons/kenyoni/plugin_reloader/plugin.cfg", "res://addons/screenshots/plugin.cfg")

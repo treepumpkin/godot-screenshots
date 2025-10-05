@@ -1,0 +1,94 @@
+[gd_scene load_steps=3 format=3 uid="uid://dbrgvcn8hvchs"]
+
+[ext_resource type="Script" uid="uid://dgo7yugttb2sl" path="res://addons/screenshots/debugger/bottom_panel/size/size.gd" id="1_7ypgp"]
+
+[sub_resource type="DPITexture" id="DPITexture_v8sxj"]
+_source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\"><path fill=\"#ff5d5d\" d=\"M2 1v8.586l1.293-1.293a1 1 0 0 1 1.414 0L7 10.587l2.293-2.293a1 1 0 0 1 1.414 0L13 10.586l1-1V6H9V1H2zm8 0v4h4zm-6 9.414-2 2V15h12v-2.586l-.293.293a1 1 0 0 1-1.414 0L10 10.414l-2.293 2.293a1 1 0 0 1-1.414 0L4 10.414z\"/></svg>
+"
+
+[node name="Size" type="HBoxContainer" node_paths=PackedStringArray("preset_option_button")]
+script = ExtResource("1_7ypgp")
+preset_option_button = NodePath("VBoxContainer2/HBoxContainer/OptionButton")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+
+[node name="XLabel" type="Label" parent="VBoxContainer2/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "x"
+
+[node name="XLineEdit" type="LineEdit" parent="VBoxContainer2/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "1320"
+virtual_keyboard_type = 2
+
+[node name="PixelsLabel" type="Label" parent="VBoxContainer2/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "px"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+
+[node name="YLabel" type="Label" parent="VBoxContainer2/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "y"
+
+[node name="YLineEdit" type="LineEdit" parent="VBoxContainer2/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "2868"
+virtual_keyboard_type = 2
+
+[node name="PixelsLabel2" type="Label" parent="VBoxContainer2/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "px"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer2"]
+layout_mode = 2
+
+[node name="OptionButton" type="OptionButton" parent="VBoxContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+flat = true
+text_overrun_behavior = 3
+selected = 0
+fit_to_longest_item = false
+item_count = 5
+popup/item_0/text = "iPhone 6.9\" (portrait)"
+popup/item_0/id = 0
+popup/item_1/text = "iPhone 6.9\" (landscape)"
+popup/item_1/id = 1
+popup/item_2/text = "iPad 13\" (portrait)"
+popup/item_2/id = 2
+popup/item_3/text = "iPad 13\" (landscape)"
+popup/item_3/id = 3
+popup/item_4/text = "Custom"
+popup/item_4/id = 4
+
+[node name="TrashButton" type="Button" parent="VBoxContainer2/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+disabled = true
+icon = SubResource("DPITexture_v8sxj")
+flat = true
+
+[node name="AddButton" type="Button" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+icon = SubResource("DPITexture_v8sxj")

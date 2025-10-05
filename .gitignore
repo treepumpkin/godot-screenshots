@@ -1,0 +1,12 @@
+.godot/
+.import/
+
+
+# System/tool-specific ignores
+.directory
+.DS_Store
+*~
+
+/addons/kenyoni/plugin_reloader
+/addons/explore-editor-theme
+addons/screenshots/settings.cfg

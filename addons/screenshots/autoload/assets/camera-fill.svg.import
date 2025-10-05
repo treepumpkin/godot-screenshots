@@ -1,0 +1,20 @@
+[remap]
+
+importer="svg"
+type="DPITexture"
+uid="uid://dycxybqgtxc2w"
+path="res://.godot/imported/camera-fill.svg-e9198903bce487e974bcb588c9f9f7a6.dpitex"
+
+[deps]
+
+source_file="res://addons/screenshots/autoload/assets/camera-fill.svg"
+dest_files=["res://.godot/imported/camera-fill.svg-e9198903bce487e974bcb588c9f9f7a6.dpitex"]
+
+[params]
+
+base_scale=10.0
+saturation=1.0
+color_map={
+Color(0, 0, 0, 1): Color(1, 1, 1, 1)
+}
+compress=true

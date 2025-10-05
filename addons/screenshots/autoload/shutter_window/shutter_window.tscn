@@ -1,0 +1,49 @@
+[gd_scene load_steps=5 format=3 uid="uid://bljdk7ctqona7"]
+
+[ext_resource type="Script" uid="uid://bw4haikxxwnq" path="res://addons/screenshots/autoload/shutter_window/shutter_window.gd" id="1_iuwdj"]
+[ext_resource type="Texture2D" uid="uid://dycxybqgtxc2w" path="res://addons/screenshots/autoload/assets/camera-fill.svg" id="2_nd08q"]
+[ext_resource type="AudioStream" uid="uid://dhtbqkl7tqwaa" path="res://addons/screenshots/autoload/assets/camera-shutter.mp3" id="3_og3rn"]
+[ext_resource type="Script" uid="uid://cx82rfmwl8gk0" path="res://addons/screenshots/screenshots_local_data.gd" id="4_nd08q"]
+
+[node name="ShutterWindow" type="Window" node_paths=PackedStringArray("local_data")]
+transparent_bg = true
+oversampling_override = 1.0
+title = "Shutter"
+initial_position = 1
+size = Vector2i(300, 200)
+always_on_top = true
+transparent = true
+exclude_from_capture = true
+maximize_disabled = true
+script = ExtResource("1_iuwdj")
+local_data = NodePath("LocalData")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="ShutterButton" type="Button" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+icon = ExtResource("2_nd08q")
+icon_alignment = 1
+expand_icon = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+stream = ExtResource("3_og3rn")
+
+[node name="LocalData" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("4_nd08q")

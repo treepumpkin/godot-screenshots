@@ -1,0 +1,342 @@
+[gd_scene load_steps=11 format=3 uid="uid://b2ktx6dty0dq4"]
+
+[ext_resource type="Script" uid="uid://culd18vnvt4ej" path="res://addons/screenshots/debugger/bottom_panel/bottom_panel.gd" id="1_7ct7k"]
+[ext_resource type="Script" uid="uid://bq5amyoktrfo4" path="res://addons/screenshots/debugger/bottom_panel/settings.gd" id="2_ivg3g"]
+[ext_resource type="Script" uid="uid://y1mw5tn3rmxj" path="res://addons/screenshots/debugger/bottom_panel/resolution.gd" id="4_v0ol1"]
+[ext_resource type="Script" uid="uid://c034i367kogf6" path="res://addons/screenshots/debugger/bottom_panel/locales.gd" id="6_m7syr"]
+[ext_resource type="Script" uid="uid://jfpjg1put47h" path="res://addons/screenshots/debugger/bottom_panel/save_folder.gd" id="7_q2ypf"]
+[ext_resource type="Script" uid="uid://cvvxb0tom0wc" path="res://addons/screenshots/debugger/bottom_panel/camera_roll.gd" id="8_6oft3"]
+[ext_resource type="Script" uid="uid://c5poruw4iu2ve" path="res://addons/screenshots/debugger/bottom_panel/camera_roll_bottom_buttons.gd" id="8_epjix"]
+[ext_resource type="Script" uid="uid://cx82rfmwl8gk0" path="res://addons/screenshots/screenshots_local_data.gd" id="9_ke0xa"]
+
+[sub_resource type="DPITexture" id="DPITexture_q8tfr"]
+_source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\"><path fill=\"#ff5d5d\" d=\"M2 1v8.586l1.293-1.293a1 1 0 0 1 1.414 0L7 10.587l2.293-2.293a1 1 0 0 1 1.414 0L13 10.586l1-1V6H9V1H2zm8 0v4h4zm-6 9.414-2 2V15h12v-2.586l-.293.293a1 1 0 0 1-1.414 0L10 10.414l-2.293 2.293a1 1 0 0 1-1.414 0L4 10.414z\"/></svg>
+"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2337e"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 0.365, 0.365, 1)
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_detail = 1
+
+[node name="Screenshots" type="Control" node_paths=PackedStringArray("nodes_to_save")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_7ct7k")
+nodes_to_save = [NodePath("HSplitContainer/VBoxContainer/ScrollContainer/Settings/Shutter/VBoxContainer/HBoxContainer4/PausesGameCheckBox"), NodePath("HSplitContainer/VBoxContainer/ScrollContainer/Settings/Shutter/VBoxContainer/HBoxContainer2/ShowShutterCheckBox"), NodePath("HSplitContainer/VBoxContainer/ScrollContainer/Settings/Shutter/VBoxContainer/HBoxContainer3/ShutterSoundsCheckBox"), NodePath("HSplitContainer/VBoxContainer/ScrollContainer/Settings/Shutter/VBoxContainer/HBoxContainer/InputActionLineEdit"), NodePath("HSplitContainer/VBoxContainer/ScrollContainer/Settings/SaveFolder/VBoxContainer/FormatsContainers/PNGCheckBox"), NodePath("HSplitContainer/VBoxContainer/ScrollContainer/Settings/SaveFolder/VBoxContainer/FormatsContainers/JPGCheckBox"), NodePath("HSplitContainer/VBoxContainer/ScrollContainer/Settings/SaveFolder/VBoxContainer/FormatsContainers/WEBPCheckBox"), NodePath("HSplitContainer/VBoxContainer/ScrollContainer/Settings/SaveFolder/VBoxContainer/HBoxContainer/PathLineEdit"), NodePath("HSplitContainer/VBoxContainer/ScrollContainer/Settings/SaveFolder/VBoxContainer/HBoxContainer2/UseSubFoldersCheckBox")]
+
+[node name="LocalData" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("9_ke0xa")
+
+[node name="HSplitContainer" type="HSplitContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HSplitContainer"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="HSplitContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HSplitContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="SettingsIcon" type="TextureRect" parent="HSplitContainer/VBoxContainer/PanelContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+texture = SubResource("DPITexture_q8tfr")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="HSplitContainer/VBoxContainer/PanelContainer/HBoxContainer"]
+layout_mode = 2
+text = "Settings"
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="HSplitContainer/VBoxContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="Settings" type="VBoxContainer" parent="HSplitContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("2_ivg3g")
+
+[node name="Shutter" type="FoldableContainer" parent="HSplitContainer/VBoxContainer/ScrollContainer/Settings"]
+layout_mode = 2
+folded = true
+title = "Shutter"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HSplitContainer/VBoxContainer/ScrollContainer/Settings/Shutter"]
+visible = false
+layout_mode = 2
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="HSplitContainer/VBoxContainer/ScrollContainer/Settings/Shutter/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HSplitContainer/VBoxContainer/ScrollContainer/Settings/Shutter/VBoxContainer/HBoxContainer4"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+text = "Pauses game"
+
+[node name="PausesGameCheckBox" type="CheckBox" parent="HSplitContainer/VBoxContainer/ScrollContainer/Settings/Shutter/VBoxContainer/HBoxContainer4"]
+unique_name_in_owner = true
+layout_mode = 2
+button_pressed = true
+text = "On"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="HSplitContainer/VBoxContainer/ScrollContainer/Settings/Shutter/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HSplitContainer/VBoxContainer/ScrollContainer/Settings/Shutter/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+text = "Show shutter"
+
+[node name="ShowShutterCheckBox" type="CheckBox" parent="HSplitContainer/VBoxContainer/ScrollContainer/Settings/Shutter/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+button_pressed = true
+text = "On"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="HSplitContainer/VBoxContainer/ScrollContainer/Settings/Shutter/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HSplitContainer/VBoxContainer/ScrollContainer/Settings/Shutter/VBoxContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+text = "Shutter sounds"
+
+[node name="ShutterSoundsCheckBox" type="CheckBox" parent="HSplitContainer/VBoxContainer/ScrollContainer/Settings/Shutter/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+button_pressed = true
+text = "On"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HSplitContainer/VBoxContainer/ScrollContainer/Settings/Shutter/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HSplitContainer/VBoxContainer/ScrollContainer/Settings/Shutter/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+text = "Input Action"
+
+[node name="InputActionLineEdit" type="LineEdit" parent="HSplitContainer/VBoxContainer/ScrollContainer/Settings/Shutter/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Resolution" type="FoldableContainer" parent="HSplitContainer/VBoxContainer/ScrollContainer/Settings" node_paths=PackedStringArray("sizes_container")]
+unique_name_in_owner = true
+layout_mode = 2
+title = "Resolution"
+script = ExtResource("4_v0ol1")
+sizes_container = NodePath("HBoxContainer/SizesContainer")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HSplitContainer/VBoxContainer/ScrollContainer/Settings/Resolution"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HSplitContainer/VBoxContainer/ScrollContainer/Settings/Resolution/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "Sizes"
+
+[node name="SizesContainer" type="HFlowContainer" parent="HSplitContainer/VBoxContainer/ScrollContainer/Settings/Resolution/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Locales" type="FoldableContainer" parent="HSplitContainer/VBoxContainer/ScrollContainer/Settings" node_paths=PackedStringArray("local_data", "select_all_button", "deselect_all_button")]
+unique_name_in_owner = true
+layout_mode = 2
+folded = true
+title = "Locales"
+script = ExtResource("6_m7syr")
+local_data = NodePath("../../../../../LocalData")
+select_all_button = NodePath("VBoxContainer/HBoxContainer/SelectAll")
+deselect_all_button = NodePath("VBoxContainer/HBoxContainer/DeselectAll")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HSplitContainer/VBoxContainer/ScrollContainer/Settings/Locales"]
+visible = false
+layout_mode = 2
+
+[node name="HFlowContainer" type="HFlowContainer" parent="HSplitContainer/VBoxContainer/ScrollContainer/Settings/Locales/VBoxContainer"]
+layout_mode = 2
+
+[node name="NoneLocaleCheckBox" type="CheckBox" parent="HSplitContainer/VBoxContainer/ScrollContainer/Settings/Locales/VBoxContainer/HFlowContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+button_pressed = true
+text = "none"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HSplitContainer/VBoxContainer/ScrollContainer/Settings/Locales/VBoxContainer"]
+layout_mode = 2
+
+[node name="SelectAll" type="Button" parent="HSplitContainer/VBoxContainer/ScrollContainer/Settings/Locales/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Select all"
+icon = SubResource("DPITexture_q8tfr")
+flat = true
+
+[node name="DeselectAll" type="Button" parent="HSplitContainer/VBoxContainer/ScrollContainer/Settings/Locales/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Deselect all"
+icon = SubResource("DPITexture_q8tfr")
+flat = true
+
+[node name="SaveFolder" type="FoldableContainer" parent="HSplitContainer/VBoxContainer/ScrollContainer/Settings" node_paths=PackedStringArray("local_data")]
+layout_mode = 2
+folded = true
+title = "Save"
+script = ExtResource("7_q2ypf")
+local_data = NodePath("../../../../../LocalData")
+
+[node name="FileDialog" type="FileDialog" parent="HSplitContainer/VBoxContainer/ScrollContainer/Settings/SaveFolder"]
+unique_name_in_owner = true
+oversampling_override = 1.0
+title = "Open a Directory"
+initial_position = 1
+size = Vector2i(1991, 1200)
+file_mode = 2
+access = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HSplitContainer/VBoxContainer/ScrollContainer/Settings/SaveFolder"]
+visible = false
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HSplitContainer/VBoxContainer/ScrollContainer/Settings/SaveFolder/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HSplitContainer/VBoxContainer/ScrollContainer/Settings/SaveFolder/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+text = "Path"
+
+[node name="PathLineEdit" type="LineEdit" parent="HSplitContainer/VBoxContainer/ScrollContainer/Settings/SaveFolder/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "user://screenshots"
+
+[node name="PickFolderButton" type="Button" parent="HSplitContainer/VBoxContainer/ScrollContainer/Settings/SaveFolder/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+icon = SubResource("DPITexture_q8tfr")
+
+[node name="FormatsContainers" type="HFlowContainer" parent="HSplitContainer/VBoxContainer/ScrollContainer/Settings/SaveFolder/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="PNGCheckBox" type="CheckBox" parent="HSplitContainer/VBoxContainer/ScrollContainer/Settings/SaveFolder/VBoxContainer/FormatsContainers"]
+unique_name_in_owner = true
+layout_mode = 2
+button_pressed = true
+text = "PNG"
+
+[node name="JPGCheckBox" type="CheckBox" parent="HSplitContainer/VBoxContainer/ScrollContainer/Settings/SaveFolder/VBoxContainer/FormatsContainers"]
+layout_mode = 2
+button_pressed = true
+text = "JPG"
+
+[node name="WEBPCheckBox" type="CheckBox" parent="HSplitContainer/VBoxContainer/ScrollContainer/Settings/SaveFolder/VBoxContainer/FormatsContainers"]
+layout_mode = 2
+text = "WEBP"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="HSplitContainer/VBoxContainer/ScrollContainer/Settings/SaveFolder/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HSplitContainer/VBoxContainer/ScrollContainer/Settings/SaveFolder/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+text = "Use subfolders"
+
+[node name="UseSubFoldersCheckBox" type="CheckBox" parent="HSplitContainer/VBoxContainer/ScrollContainer/Settings/SaveFolder/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "On"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="HSplitContainer"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="HSplitContainer/VBoxContainer2"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HSplitContainer/VBoxContainer2/PanelContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="CameraRollIcon" type="TextureRect" parent="HSplitContainer/VBoxContainer2/PanelContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+texture = SubResource("DPITexture_q8tfr")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="HSplitContainer/VBoxContainer2/PanelContainer/HBoxContainer"]
+layout_mode = 2
+text = "Camera Roll"
+horizontal_alignment = 1
+
+[node name="ScrollContainer2" type="ScrollContainer" parent="HSplitContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="CameraRoll" type="VBoxContainer" parent="HSplitContainer/VBoxContainer2/ScrollContainer2" node_paths=PackedStringArray("local_data", "previews_container")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("8_6oft3")
+local_data = NodePath("../../../../LocalData")
+previews_container = NodePath("RollPanelContainer/RollHFlowContainer")
+
+[node name="RollPanelContainer" type="PanelContainer" parent="HSplitContainer/VBoxContainer2/ScrollContainer2/CameraRoll"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_2337e")
+
+[node name="RollHFlowContainer" type="HFlowContainer" parent="HSplitContainer/VBoxContainer2/ScrollContainer2/CameraRoll/RollPanelContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/v_separation = 20
+
+[node name="CameraRollBottomButtons" type="HBoxContainer" parent="HSplitContainer/VBoxContainer2"]
+layout_mode = 2
+alignment = 2
+script = ExtResource("8_epjix")
+
+[node name="DeleteAllButton" type="Button" parent="HSplitContainer/VBoxContainer2/CameraRollBottomButtons"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Delete all"
+icon = SubResource("DPITexture_q8tfr")
+
+[node name="OpenFolderButton" type="Button" parent="HSplitContainer/VBoxContainer2/CameraRollBottomButtons"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Open in File Manager"
+icon = SubResource("DPITexture_q8tfr")
