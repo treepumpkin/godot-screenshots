@@ -5,7 +5,7 @@
 [ext_resource type="AudioStream" uid="uid://dhtbqkl7tqwaa" path="res://addons/screenshots/autoload/assets/camera-shutter.mp3" id="3_og3rn"]
 [ext_resource type="Script" uid="uid://cx82rfmwl8gk0" path="res://addons/screenshots/screenshots_local_data.gd" id="4_nd08q"]
 
-[node name="ShutterWindow" type="Window" node_paths=PackedStringArray("local_data")]
+[node name="ShutterWindow" type="Window" node_paths=PackedStringArray("_local_data")]
 transparent_bg = true
 oversampling_override = 1.0
 title = "Shutter"
@@ -16,7 +16,7 @@ transparent = true
 exclude_from_capture = true
 maximize_disabled = true
 script = ExtResource("1_iuwdj")
-local_data = NodePath("LocalData")
+_local_data = NodePath("LocalData")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchors_preset = 15
