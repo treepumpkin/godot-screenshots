@@ -28,17 +28,17 @@ jobs:
           echo "EOF" >> $GITHUB_OUTPUT
       
       - name: Create release directory
-        run: mkdir -p release_temp
+        run: mkdir -p release_temp/addons/screenshots
       
       - name: Copy plugin files
         run: |
-          cp -r addons/screenshots release_temp/
-          cp LICENSE.md release_temp/
+          cp -r addons/screenshots/* release_temp/addons/screenshots/
+          cp LICENSE.md release_temp/addons/screenshots/
       
       - name: Create ZIP archive
         run: |
           cd release_temp
-          zip -r ../godot-screenshots-${{ steps.get_version.outputs.VERSION }}.zip .
+          zip -r ../godot-screenshots-${{ steps.get_version.outputs.VERSION }}.zip addons
           cd ..
       
       - name: Create Release

@@ -4,10 +4,6 @@ var settings: LocalFile
 
 func _ready():
 	settings = LocalFile.new("res://addons/screenshots/settings.cfg")
-	settings.value_changed.connect(_on_settings_changed)
-
-func _on_settings_changed(section: String, key: String, new_value):
-	print("Setting changed: [%s] %s = %s" % [section, key, new_value])
 
 class LocalFile:
 	signal value_changed(section: String, key: String, new_value)
