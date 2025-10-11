@@ -1,12 +1,17 @@
 @tool
 extends Node
-
 var settings: LocalFile
 
 func _ready():
 	settings = LocalFile.new("res://addons/screenshots/settings.cfg")
+	settings.value_changed.connect(_on_settings_changed)
+
+func _on_settings_changed(section: String, key: String, new_value):
+	print("Setting changed: [%s] %s = %s" % [section, key, new_value])
 
 class LocalFile:
+	signal value_changed(section: String, key: String, new_value)
+	
 	var config: ConfigFile
 	var file_path: String
 	
@@ -23,10 +28,20 @@ class LocalFile:
 			pass
 	
 	func save(section: String, key: String, value):
-		config.set_value(section, key, value)
-		var err = config.save(file_path)
-		if err != OK:
-			push_error("Failed to save config file " + file_path + ": " + str(err))
+		var old_value = null
+		var has_existing_key = config.has_section_key(section, key)
+		
+		if has_existing_key:
+			old_value = config.get_value(section, key)
+		
+		# Only save and emit if the value is different
+		if not has_existing_key or old_value != value:
+			config.set_value(section, key, value)
+			var err = config.save(file_path)
+			if err != OK:
+				push_error("Failed to save config file " + file_path + ": " + str(err))
+			else:
+				value_changed.emit(section, key, value)
 	
 	func load_value(section: String, key: String, default_value = null):
 		# Check if the key exists first to avoid C++ errors

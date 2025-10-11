@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://b2ktx6dty0dq4"]
+[gd_scene load_steps=12 format=3 uid="uid://b2ktx6dty0dq4"]
 
 [ext_resource type="Script" uid="uid://culd18vnvt4ej" path="res://addons/screenshots/debugger/bottom_panel/bottom_panel.gd" id="1_7ct7k"]
 [ext_resource type="Script" uid="uid://bq5amyoktrfo4" path="res://addons/screenshots/debugger/bottom_panel/settings.gd" id="2_ivg3g"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://c034i367kogf6" path="res://addons/screenshots/debugger/bottom_panel/locales.gd" id="6_m7syr"]
 [ext_resource type="Script" uid="uid://jfpjg1put47h" path="res://addons/screenshots/debugger/bottom_panel/save_folder.gd" id="7_q2ypf"]
 [ext_resource type="Script" uid="uid://cvvxb0tom0wc" path="res://addons/screenshots/debugger/bottom_panel/camera_roll.gd" id="8_6oft3"]
+[ext_resource type="Script" uid="uid://x5sotkduu1be" path="res://addons/screenshots/debugger/bottom_panel/directory_watcher.gd" id="8_2337e"]
 [ext_resource type="Script" uid="uid://c5poruw4iu2ve" path="res://addons/screenshots/debugger/bottom_panel/camera_roll_bottom_buttons.gd" id="8_epjix"]
 [ext_resource type="Script" uid="uid://cx82rfmwl8gk0" path="res://addons/screenshots/screenshots_local_data.gd" id="9_ke0xa"]
 
@@ -335,6 +336,10 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_2337e")
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/v_separation = 20
+
+[node name="DirectoryWatcher" type="Node" parent="HSplitContainer/VBoxContainer2/ScrollContainer2/CameraRoll"]
+unique_name_in_owner = true
+script = ExtResource("8_2337e")
 
 [node name="CameraRollBottomButtons" type="HBoxContainer" parent="HSplitContainer/VBoxContainer2"]
 layout_mode = 2
