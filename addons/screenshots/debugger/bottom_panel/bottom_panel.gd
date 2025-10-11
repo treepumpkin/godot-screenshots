@@ -41,11 +41,7 @@ func on_session_started() -> void:
 	pass
 
 func on_editor_debugger_plugin_capture(p_message, p_data) -> bool:
-	if p_message == "screenshot:take":
-		var buffer: PackedByteArray = p_data[0]
-		var img := Image.new()
-		var err := img.load_png_from_buffer(buffer)
-		if err == OK:
-			%CameraRoll.save_image(img, p_data[1], p_data[2])
+	if p_message == "screenshot:taken":
+		%CameraRoll.add_preview(p_data[0], p_data[1], p_data[2])
 		return true
 	return false

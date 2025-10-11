@@ -68,7 +68,7 @@ Fires after the burst is completed. Use it to unhide debug UI elements.
 Tested on Godot 4.5 (Linux and macOS)
 
 ## Support
-Questions? Email hello@pumpkintree.games
+For bugs and feature requests, please open an issue. Additional questions? Email [hello@pumpkintree.games](mailto:hello@pumpkintree.games)
 
 ## Credits
 - Developed by [Davide Di Staso](http://www.pumpkintree.games)

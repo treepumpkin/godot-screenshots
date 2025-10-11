@@ -36,7 +36,7 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_7ct7k")
-nodes_to_save = [NodePath("HSplitContainer/VBoxContainer/ScrollContainer/Settings/Shutter/VBoxContainer/HBoxContainer4/PausesGameCheckBox"), NodePath("HSplitContainer/VBoxContainer/ScrollContainer/Settings/Shutter/VBoxContainer/HBoxContainer2/ShowShutterCheckBox"), NodePath("HSplitContainer/VBoxContainer/ScrollContainer/Settings/Shutter/VBoxContainer/HBoxContainer3/ShutterSoundsCheckBox"), NodePath("HSplitContainer/VBoxContainer/ScrollContainer/Settings/Shutter/VBoxContainer/HBoxContainer/InputActionLineEdit"), NodePath("HSplitContainer/VBoxContainer/ScrollContainer/Settings/SaveFolder/VBoxContainer/FormatsContainers/PNGCheckBox"), NodePath("HSplitContainer/VBoxContainer/ScrollContainer/Settings/SaveFolder/VBoxContainer/FormatsContainers/JPGCheckBox"), NodePath("HSplitContainer/VBoxContainer/ScrollContainer/Settings/SaveFolder/VBoxContainer/FormatsContainers/WEBPCheckBox"), NodePath("HSplitContainer/VBoxContainer/ScrollContainer/Settings/SaveFolder/VBoxContainer/HBoxContainer/PathLineEdit"), NodePath("HSplitContainer/VBoxContainer/ScrollContainer/Settings/SaveFolder/VBoxContainer/HBoxContainer2/UseSubFoldersCheckBox")]
+nodes_to_save = [NodePath("HSplitContainer/VBoxContainer/ScrollContainer/Settings/Shutter/VBoxContainer/HBoxContainer4/PausesGameCheckBox"), NodePath("HSplitContainer/VBoxContainer/ScrollContainer/Settings/Shutter/VBoxContainer/HBoxContainer2/ShowShutterCheckBox"), NodePath("HSplitContainer/VBoxContainer/ScrollContainer/Settings/Shutter/VBoxContainer/HBoxContainer3/ShutterSoundsCheckBox"), NodePath("HSplitContainer/VBoxContainer/ScrollContainer/Settings/Shutter/VBoxContainer/HBoxContainer/InputActionLineEdit"), NodePath("HSplitContainer/VBoxContainer/ScrollContainer/Settings/SaveFolder/VBoxContainer/FormatsContainers/PNGCheckBox"), NodePath("HSplitContainer/VBoxContainer/ScrollContainer/Settings/SaveFolder/VBoxContainer/FormatsContainers/JPGCheckBox"), NodePath("HSplitContainer/VBoxContainer/ScrollContainer/Settings/SaveFolder/VBoxContainer/FormatsContainers/WEBPCheckBox"), NodePath("HSplitContainer/VBoxContainer/ScrollContainer/Settings/SaveFolder/VBoxContainer/HBoxContainer/PathLineEdit"), NodePath("HSplitContainer/VBoxContainer/ScrollContainer/Settings/SaveFolder/VBoxContainer/HBoxContainer2/UseSubFoldersCheckBox"), NodePath("HSplitContainer/VBoxContainer/ScrollContainer/Settings/Shutter/VBoxContainer/HBoxContainer5/OnlyRunInEditorCheckBox")]
 
 [node name="LocalData" type="Node" parent="."]
 unique_name_in_owner = true
@@ -92,20 +92,6 @@ title = "Shutter"
 visible = false
 layout_mode = 2
 
-[node name="HBoxContainer4" type="HBoxContainer" parent="HSplitContainer/VBoxContainer/ScrollContainer/Settings/Shutter/VBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="HSplitContainer/VBoxContainer/ScrollContainer/Settings/Shutter/VBoxContainer/HBoxContainer4"]
-custom_minimum_size = Vector2(250, 0)
-layout_mode = 2
-text = "Pauses game"
-
-[node name="PausesGameCheckBox" type="CheckBox" parent="HSplitContainer/VBoxContainer/ScrollContainer/Settings/Shutter/VBoxContainer/HBoxContainer4"]
-unique_name_in_owner = true
-layout_mode = 2
-button_pressed = true
-text = "On"
-
 [node name="HBoxContainer2" type="HBoxContainer" parent="HSplitContainer/VBoxContainer/ScrollContainer/Settings/Shutter/VBoxContainer"]
 layout_mode = 2
 
@@ -115,6 +101,33 @@ layout_mode = 2
 text = "Show shutter"
 
 [node name="ShowShutterCheckBox" type="CheckBox" parent="HSplitContainer/VBoxContainer/ScrollContainer/Settings/Shutter/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+button_pressed = true
+text = "On"
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="HSplitContainer/VBoxContainer/ScrollContainer/Settings/Shutter/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HSplitContainer/VBoxContainer/ScrollContainer/Settings/Shutter/VBoxContainer/HBoxContainer5"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+text = "Only run in Editor"
+
+[node name="OnlyRunInEditorCheckBox" type="CheckBox" parent="HSplitContainer/VBoxContainer/ScrollContainer/Settings/Shutter/VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+button_pressed = true
+text = "On"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="HSplitContainer/VBoxContainer/ScrollContainer/Settings/Shutter/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HSplitContainer/VBoxContainer/ScrollContainer/Settings/Shutter/VBoxContainer/HBoxContainer4"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+text = "Pauses game"
+
+[node name="PausesGameCheckBox" type="CheckBox" parent="HSplitContainer/VBoxContainer/ScrollContainer/Settings/Shutter/VBoxContainer/HBoxContainer4"]
 unique_name_in_owner = true
 layout_mode = 2
 button_pressed = true
@@ -255,11 +268,11 @@ text = "PNG"
 
 [node name="JPGCheckBox" type="CheckBox" parent="HSplitContainer/VBoxContainer/ScrollContainer/Settings/SaveFolder/VBoxContainer/FormatsContainers"]
 layout_mode = 2
-button_pressed = true
 text = "JPG"
 
 [node name="WEBPCheckBox" type="CheckBox" parent="HSplitContainer/VBoxContainer/ScrollContainer/Settings/SaveFolder/VBoxContainer/FormatsContainers"]
 layout_mode = 2
+button_pressed = true
 text = "WEBP"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="HSplitContainer/VBoxContainer/ScrollContainer/Settings/SaveFolder/VBoxContainer"]
