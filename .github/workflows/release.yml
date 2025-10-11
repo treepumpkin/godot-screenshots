@@ -1,0 +1,52 @@
+name: Create Release
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'  # Triggers on version tags like v1.0.0, v1.1.0, etc.
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write  # Required to create releases
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Get version from tag
+        id: get_version
+        run: echo "VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+      
+      - name: Get tag message
+        id: tag_message
+        run: |
+          git fetch --depth=1 origin +refs/tags/*:refs/tags/*
+          echo "MESSAGE<<EOF" >> $GITHUB_OUTPUT
+          git tag -l --format='%(contents)' ${GITHUB_REF#refs/tags/} >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+      
+      - name: Create release directory
+        run: mkdir -p release_temp
+      
+      - name: Copy plugin files
+        run: |
+          cp -r addons/screenshots release_temp/
+          cp LICENSE.md release_temp/
+      
+      - name: Create ZIP archive
+        run: |
+          cd release_temp
+          zip -r ../godot-screenshots-${{ steps.get_version.outputs.VERSION }}.zip .
+          cd ..
+      
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: godot-screenshots-${{ steps.get_version.outputs.VERSION }}.zip
+          body: ${{ steps.tag_message.outputs.MESSAGE }}
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
