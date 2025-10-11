@@ -72,10 +72,11 @@ func take_burst() -> void:
 		await get_tree().create_timer(0.01).timeout
 		
 		for locale in locales:
-			if not locale == "none":
-				TranslationServer.set_locale(locale)
+			var locale_to_set = locale
+			if locale == "none":
+				locale_to_set = previous_locale
+			TranslationServer.set_locale(locale_to_set)
 			await get_tree().process_frame
-			
 			save_image()
 	
 	TranslationServer.set_locale(previous_locale)
@@ -85,6 +86,7 @@ func take_burst() -> void:
 	tree.paused = game_was_paused
 	visible = shutter_was_visible
 	burst_ended.emit()
+	print_rich("[color=green][Screenshots] Done! (%s)[/color]")
 	position = old_position
 
 func save_image() -> void:
@@ -142,8 +144,6 @@ func save_image() -> void:
 			EngineDebugger.send_message("screenshot:taken", [file_path, timestamp, locale])
 			
 			print_rich("[Screenshots] Saved at: [url=%s]%s[/url]" % [ProjectSettings.globalize_path(file_path.get_base_dir()), file_path])
-			
-	print_rich("[color=green][Screenshots] Done! (%s)[/color]" % timestamp)
 			
 func get_unique_filepath(base_path: String) -> String:
 	if not FileAccess.file_exists(base_path):
