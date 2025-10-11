@@ -73,8 +73,10 @@ func take_burst() -> void:
 		
 		for locale in locales:
 			var locale_to_set = locale
+			
 			if locale == "none":
 				locale_to_set = previous_locale
+				
 			TranslationServer.set_locale(locale_to_set)
 			await get_tree().process_frame
 			save_image()
@@ -86,7 +88,7 @@ func take_burst() -> void:
 	tree.paused = game_was_paused
 	visible = shutter_was_visible
 	burst_ended.emit()
-	print_rich("[color=green][Screenshots] Done! (%s)[/color]")
+	print_rich("[color=green][Screenshots] Done![/color]")
 	position = old_position
 
 func save_image() -> void:
