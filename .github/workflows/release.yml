@@ -1,16 +1,13 @@
 name: Create Release
-
 on:
   push:
     tags:
-      - 'v*.*'  # Triggers on version tags like v1.0
-
+      - 'v*.*' # Triggers on version tags like v1.0
 jobs:
   release:
     runs-on: ubuntu-latest
     permissions:
-      contents: write  # Required to create releases
-    
+      contents: write
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -18,6 +15,10 @@ jobs:
       - name: Get version from tag
         id: get_version
         run: echo "VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+      
+      - name: Get version without dots
+        id: version_no_dots
+        run: echo "VERSION_NO_DOTS=$(echo '${{ steps.get_version.outputs.VERSION }}' | tr -d '.')" >> $GITHUB_OUTPUT
       
       - name: Get tag message
         id: tag_message
@@ -28,17 +29,17 @@ jobs:
           echo "EOF" >> $GITHUB_OUTPUT
       
       - name: Create release directory
-        run: mkdir -p release_temp/addons/screenshots
+        run: mkdir -p release_temp/godot-screenshots-${{ steps.version_no_dots.outputs.VERSION_NO_DOTS }}/addons/screenshots
       
       - name: Copy plugin files
         run: |
-          cp -r addons/screenshots/* release_temp/addons/screenshots/
-          cp LICENSE.md release_temp/addons/screenshots/
+          cp -r addons/screenshots/* release_temp/godot-screenshots-${{ steps.version_no_dots.outputs.VERSION_NO_DOTS }}/addons/screenshots/
+          cp LICENSE.md release_temp/godot-screenshots-${{ steps.version_no_dots.outputs.VERSION_NO_DOTS }}/addons/screenshots/
       
       - name: Create ZIP archive
         run: |
           cd release_temp
-          zip -r ../godot-screenshots-${{ steps.get_version.outputs.VERSION }}.zip addons
+          zip -r ../godot-screenshots-${{ steps.get_version.outputs.VERSION }}.zip godot-screenshots-${{ steps.version_no_dots.outputs.VERSION_NO_DOTS }}
           cd ..
       
       - name: Create Release
