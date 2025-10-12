@@ -10,11 +10,11 @@
 [ext_resource type="Script" uid="uid://c5poruw4iu2ve" path="res://addons/screenshots/debugger/bottom_panel/camera_roll_bottom_buttons.gd" id="8_epjix"]
 [ext_resource type="Script" uid="uid://cx82rfmwl8gk0" path="res://addons/screenshots/screenshots_local_data.gd" id="9_ke0xa"]
 
-[sub_resource type="DPITexture" id="DPITexture_q8tfr"]
+[sub_resource type="DPITexture" id="DPITexture_2337e"]
 _source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\"><path fill=\"#ff5d5d\" d=\"M2 1v8.586l1.293-1.293a1 1 0 0 1 1.414 0L7 10.587l2.293-2.293a1 1 0 0 1 1.414 0L13 10.586l1-1V6H9V1H2zm8 0v4h4zm-6 9.414-2 2V15h12v-2.586l-.293.293a1 1 0 0 1-1.414 0L10 10.414l-2.293 2.293a1 1 0 0 1-1.414 0L4 10.414z\"/></svg>
 "
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2337e"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ua4ux"]
 content_margin_left = 4.0
 content_margin_top = 4.0
 content_margin_right = 4.0
@@ -64,7 +64,7 @@ alignment = 1
 [node name="SettingsIcon" type="TextureRect" parent="HSplitContainer/VBoxContainer/PanelContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-texture = SubResource("DPITexture_q8tfr")
+texture = SubResource("DPITexture_2337e")
 stretch_mode = 3
 
 [node name="Label" type="Label" parent="HSplitContainer/VBoxContainer/PanelContainer/HBoxContainer"]
@@ -99,6 +99,8 @@ layout_mode = 2
 [node name="Label" type="Label" parent="HSplitContainer/VBoxContainer/ScrollContainer/Settings/Shutter/VBoxContainer/HBoxContainer2"]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
+tooltip_text = "Toggle shutter visibility"
+mouse_filter = 1
 text = "Show shutter"
 
 [node name="ShowShutterCheckBox" type="CheckBox" parent="HSplitContainer/VBoxContainer/ScrollContainer/Settings/Shutter/VBoxContainer/HBoxContainer2"]
@@ -113,6 +115,8 @@ layout_mode = 2
 [node name="Label" type="Label" parent="HSplitContainer/VBoxContainer/ScrollContainer/Settings/Shutter/VBoxContainer/HBoxContainer5"]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
+tooltip_text = "If the game is running outside the editor, hide the shutter and disable input processing"
+mouse_filter = 1
 text = "Only run in Editor"
 
 [node name="OnlyRunInEditorCheckBox" type="CheckBox" parent="HSplitContainer/VBoxContainer/ScrollContainer/Settings/Shutter/VBoxContainer/HBoxContainer5"]
@@ -126,6 +130,8 @@ layout_mode = 2
 [node name="Label" type="Label" parent="HSplitContainer/VBoxContainer/ScrollContainer/Settings/Shutter/VBoxContainer/HBoxContainer4"]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
+tooltip_text = "Pause execution while taking screenshots. Useful for ensuring consistency across burst captures."
+mouse_filter = 1
 text = "Pauses game"
 
 [node name="PausesGameCheckBox" type="CheckBox" parent="HSplitContainer/VBoxContainer/ScrollContainer/Settings/Shutter/VBoxContainer/HBoxContainer4"]
@@ -140,6 +146,8 @@ layout_mode = 2
 [node name="Label" type="Label" parent="HSplitContainer/VBoxContainer/ScrollContainer/Settings/Shutter/VBoxContainer/HBoxContainer3"]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
+tooltip_text = "Whether to play shutter sound effect"
+mouse_filter = 1
 text = "Shutter sounds"
 
 [node name="ShutterSoundsCheckBox" type="CheckBox" parent="HSplitContainer/VBoxContainer/ScrollContainer/Settings/Shutter/VBoxContainer/HBoxContainer3"]
@@ -153,6 +161,8 @@ layout_mode = 2
 [node name="Label" type="Label" parent="HSplitContainer/VBoxContainer/ScrollContainer/Settings/Shutter/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
+tooltip_text = "Set an Input Action to trigger a screenshot"
+mouse_filter = 1
 text = "Input Action"
 
 [node name="InputActionLineEdit" type="LineEdit" parent="HSplitContainer/VBoxContainer/ScrollContainer/Settings/Shutter/VBoxContainer/HBoxContainer"]
@@ -209,13 +219,13 @@ layout_mode = 2
 [node name="SelectAll" type="Button" parent="HSplitContainer/VBoxContainer/ScrollContainer/Settings/Locales/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "Select all"
-icon = SubResource("DPITexture_q8tfr")
+icon = SubResource("DPITexture_2337e")
 flat = true
 
 [node name="DeselectAll" type="Button" parent="HSplitContainer/VBoxContainer/ScrollContainer/Settings/Locales/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "Deselect all"
-icon = SubResource("DPITexture_q8tfr")
+icon = SubResource("DPITexture_2337e")
 flat = true
 
 [node name="SaveFolder" type="FoldableContainer" parent="HSplitContainer/VBoxContainer/ScrollContainer/Settings" node_paths=PackedStringArray("local_data")]
@@ -255,7 +265,7 @@ text = "user://screenshots"
 [node name="PickFolderButton" type="Button" parent="HSplitContainer/VBoxContainer/ScrollContainer/Settings/SaveFolder/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-icon = SubResource("DPITexture_q8tfr")
+icon = SubResource("DPITexture_2337e")
 
 [node name="FormatsContainers" type="HFlowContainer" parent="HSplitContainer/VBoxContainer/ScrollContainer/Settings/SaveFolder/VBoxContainer"]
 unique_name_in_owner = true
@@ -273,7 +283,6 @@ text = "JPG"
 
 [node name="WEBPCheckBox" type="CheckBox" parent="HSplitContainer/VBoxContainer/ScrollContainer/Settings/SaveFolder/VBoxContainer/FormatsContainers"]
 layout_mode = 2
-button_pressed = true
 text = "WEBP"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="HSplitContainer/VBoxContainer/ScrollContainer/Settings/SaveFolder/VBoxContainer"]
@@ -282,10 +291,13 @@ layout_mode = 2
 [node name="Label" type="Label" parent="HSplitContainer/VBoxContainer/ScrollContainer/Settings/SaveFolder/VBoxContainer/HBoxContainer2"]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
+tooltip_text = "Organize bursts into folders with this structure [projectname_timestamp/locale/resolution]"
+mouse_filter = 1
 text = "Use subfolders"
 
 [node name="UseSubFoldersCheckBox" type="CheckBox" parent="HSplitContainer/VBoxContainer/ScrollContainer/Settings/SaveFolder/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
+button_pressed = true
 text = "On"
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="HSplitContainer"]
@@ -301,7 +313,7 @@ alignment = 1
 [node name="CameraRollIcon" type="TextureRect" parent="HSplitContainer/VBoxContainer2/PanelContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-texture = SubResource("DPITexture_q8tfr")
+texture = SubResource("DPITexture_2337e")
 stretch_mode = 3
 
 [node name="Label" type="Label" parent="HSplitContainer/VBoxContainer2/PanelContainer/HBoxContainer"]
@@ -330,7 +342,7 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_2337e")
+theme_override_styles/panel = SubResource("StyleBoxFlat_ua4ux")
 
 [node name="RollHFlowContainer" type="HFlowContainer" parent="HSplitContainer/VBoxContainer2/ScrollContainer2/CameraRoll/RollPanelContainer"]
 unique_name_in_owner = true
@@ -350,11 +362,11 @@ script = ExtResource("8_epjix")
 unique_name_in_owner = true
 layout_mode = 2
 text = "Delete all"
-icon = SubResource("DPITexture_q8tfr")
+icon = SubResource("DPITexture_2337e")
 
 [node name="OpenFolderButton" type="Button" parent="HSplitContainer/VBoxContainer2/CameraRollBottomButtons"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 8
 text = "Open in File Manager"
-icon = SubResource("DPITexture_q8tfr")
+icon = SubResource("DPITexture_2337e")
