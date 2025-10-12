@@ -21,12 +21,13 @@ func _ready() -> void:
 		position = saved_position
 	old_position = position
 	var only_run_in_editor = _local_data.settings.load_value("misc", "OnlyRunInEditorCheckBox", true)
+	visible = _local_data.settings.load_value("misc", "ShowShutterCheckBox", true)
 	
 	if only_run_in_editor and not OS.has_feature("editor"):
-		queue_free()
+		set_process_input(false)
+		hide()
 		return
 		
-	visible = _local_data.settings.load_value("misc", "ShowShutterCheckBox", true)
 	_input_action = _local_data.settings.load_value("misc", "InputActionLineEdit", "")
 	%ShutterButton.pressed.connect(take_burst)
 	close_requested.connect(_on_close_requested)
@@ -36,6 +37,7 @@ func _on_close_requested() -> void:
 	hide()
 	
 var old_position : Vector2i
+
 func _input(event: InputEvent) -> void:
 	if old_position != position:
 		_local_data.settings.save("misc", "ShutterWindowPosition", position)
