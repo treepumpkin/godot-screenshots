@@ -55,7 +55,11 @@ func take_burst() -> void:
 	burst_starting.emit()
 	var pause_game = _local_data.settings.load_value("misc", "PausesGameCheckBox", true)
 	var shutter_was_visible = visible
-	var sizes = _local_data.settings.load_value("misc", "Sizes", [])
+	
+	var def_width = ProjectSettings.get_setting("display/window/size/viewport_width")
+	var def_height = ProjectSettings.get_setting("display/window/size/viewport_height")
+
+	var sizes = _local_data.settings.load_value("misc", "Sizes", [Vector2i(def_width,def_height)])
 	var locales = _local_data.settings.load_value("misc", "Locales", ["none"])
 	var previous_locale = TranslationServer.get_locale()
 	hide()
