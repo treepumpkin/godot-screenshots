@@ -7,10 +7,12 @@ func _ready() -> void:
 	%DeleteAllButton.pressed.connect(_on_delete_all_button_pressed)
 	%OpenFolderButton.icon = get_theme_icon("Filesystem", "EditorIcons")
 	%OpenFolderButton.pressed.connect(_on_open_folder_button_pressed)
-	
+
+
 func _on_open_folder_button_pressed() -> void:
 	OS.shell_open(ProjectSettings.globalize_path(%PathLineEdit.text))
-	
+
+
 func _on_delete_all_button_pressed() -> void:
 	for c in %RollHFlowContainer.get_children():
 		var path = c.path
