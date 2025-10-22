@@ -18,3 +18,7 @@ config/icon="res://store_assets/icon.svg"
 [autoload]
 
 Screenshots="*res://addons/screenshots/autoload/shutter_window/shutter_window.tscn"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/screenshots/plugin.cfg")

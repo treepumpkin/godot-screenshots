@@ -55,6 +55,10 @@ func take_burst() -> void:
 	var old_position = position
 	_local_data.settings.load_config()
 	burst_starting.emit()
+	
+	var stretch_mode = get_tree().root.content_scale_mode
+	var is_embedded = Engine.is_embedded_in_editor()
+	
 	var pause_game = _local_data.settings.load_value("misc", "PausesGameCheckBox", true)
 	var shutter_was_visible = visible
 
@@ -71,11 +75,14 @@ func take_burst() -> void:
 	if pause_game:
 		tree.paused = true
 	var prev_size = DisplayServer.window_get_size()
+	
+	if stretch_mode == CONTENT_SCALE_MODE_VIEWPORT:
+		prev_size = get_tree().root.get_viewport().content_scale_size
 
 	# Take screenshots for each configured size
 	for s in sizes:
-		DisplayServer.window_set_size(s)
-		await get_tree().create_timer(0.01).timeout
+		set_resolution(s, stretch_mode)
+		await RenderingServer.frame_post_draw
 
 		for locale in locales:
 			var locale_to_set = locale
@@ -84,25 +91,35 @@ func take_burst() -> void:
 				locale_to_set = previous_locale
 
 			TranslationServer.set_locale(locale_to_set)
-			await get_tree().process_frame
+			await RenderingServer.frame_post_draw
 			save_image()
 
 	TranslationServer.set_locale(previous_locale)
-	DisplayServer.window_set_size(prev_size)
-
+	set_resolution(prev_size, stretch_mode)
+	
 	tree.paused = game_was_paused
 	visible = shutter_was_visible
 	burst_ended.emit()
 	print_rich("[color=green][Screenshots] Done![/color]")
 	position = old_position
 
+func set_resolution(resolution: Vector2i, stretch_mode: ContentScaleMode) -> void:
+	var screen_resolution = DisplayServer.screen_get_size()
+	match stretch_mode:
+		CONTENT_SCALE_MODE_VIEWPORT:
+			get_tree().root.get_viewport().content_scale_size = resolution
+		_:
+			if resolution > screen_resolution:
+				print_rich("[color=yellow][Screenshots] Warning! You are trying to take a screenshot at %dx%d, but your screen size is %dx%d" % [resolution.x, resolution.y, screen_resolution.x, screen_resolution.y])
+				print("[color=yellow][Screenshots] To take a screenshot larger than your screen size, use the 'viewport' stretch mode (Project Settings > Stretch > Mode)")
+			DisplayServer.window_set_size(resolution)
 
 func save_image() -> void:
 	var locale = TranslationServer.get_locale()
 	var timestamp = Time.get_time_string_from_system()
 	var play_shutter_sounds = _local_data.settings.load_value("misc", "ShutterSoundsCheckBox", true)
 	# Save the screenshot
-	var image = get_parent().get_viewport().get_texture().get_image()
+	var image = get_tree().root.get_viewport().get_texture().get_image()
 	image_captured.emit(image)
 
 	if play_shutter_sounds:
