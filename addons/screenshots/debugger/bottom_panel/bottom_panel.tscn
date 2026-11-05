@@ -37,7 +37,7 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_7ct7k")
-nodes_to_save = [NodePath("HSplitContainer/VBoxContainer/ScrollContainer/Settings/Shutter/VBoxContainer/HBoxContainer4/PausesGameCheckBox"), NodePath("HSplitContainer/VBoxContainer/ScrollContainer/Settings/Shutter/VBoxContainer/HBoxContainer2/ShowShutterCheckBox"), NodePath("HSplitContainer/VBoxContainer/ScrollContainer/Settings/Shutter/VBoxContainer/HBoxContainer3/ShutterSoundsCheckBox"), NodePath("HSplitContainer/VBoxContainer/ScrollContainer/Settings/Shutter/VBoxContainer/HBoxContainer/InputActionLineEdit"), NodePath("HSplitContainer/VBoxContainer/ScrollContainer/Settings/SaveFolder/VBoxContainer/FormatsContainers/PNGCheckBox"), NodePath("HSplitContainer/VBoxContainer/ScrollContainer/Settings/SaveFolder/VBoxContainer/FormatsContainers/JPGCheckBox"), NodePath("HSplitContainer/VBoxContainer/ScrollContainer/Settings/SaveFolder/VBoxContainer/FormatsContainers/WEBPCheckBox"), NodePath("HSplitContainer/VBoxContainer/ScrollContainer/Settings/SaveFolder/VBoxContainer/HBoxContainer/PathLineEdit"), NodePath("HSplitContainer/VBoxContainer/ScrollContainer/Settings/SaveFolder/VBoxContainer/HBoxContainer2/UseSubFoldersCheckBox"), NodePath("HSplitContainer/VBoxContainer/ScrollContainer/Settings/Shutter/VBoxContainer/HBoxContainer5/OnlyRunInEditorCheckBox")]
+nodes_to_save = [NodePath("HSplitContainer/VBoxContainer/ScrollContainer/Settings/Shutter/VBoxContainer/HBoxContainer4/PausesGameCheckBox"), NodePath("HSplitContainer/VBoxContainer/ScrollContainer/Settings/Shutter/VBoxContainer/HBoxContainer2/ShowShutterCheckBox"), NodePath("HSplitContainer/VBoxContainer/ScrollContainer/Settings/Shutter/VBoxContainer/HBoxContainer3/ShutterSoundsCheckBox"), NodePath("HSplitContainer/VBoxContainer/ScrollContainer/Settings/Shutter/VBoxContainer/HBoxContainer/InputActionLineEdit"), NodePath("HSplitContainer/VBoxContainer/ScrollContainer/Settings/Shutter/VBoxContainer/HBoxContainer6/ToggleShutterInputActionLineEdit"), NodePath("HSplitContainer/VBoxContainer/ScrollContainer/Settings/SaveFolder/VBoxContainer/FormatsContainers/PNGCheckBox"), NodePath("HSplitContainer/VBoxContainer/ScrollContainer/Settings/SaveFolder/VBoxContainer/FormatsContainers/JPGCheckBox"), NodePath("HSplitContainer/VBoxContainer/ScrollContainer/Settings/SaveFolder/VBoxContainer/FormatsContainers/WEBPCheckBox"), NodePath("HSplitContainer/VBoxContainer/ScrollContainer/Settings/SaveFolder/VBoxContainer/HBoxContainer/PathLineEdit"), NodePath("HSplitContainer/VBoxContainer/ScrollContainer/Settings/SaveFolder/VBoxContainer/HBoxContainer2/UseSubFoldersCheckBox"), NodePath("HSplitContainer/VBoxContainer/ScrollContainer/Settings/Shutter/VBoxContainer/HBoxContainer5/OnlyRunInEditorCheckBox")]
 
 [node name="LocalData" type="Node" parent="."]
 unique_name_in_owner = true
@@ -166,6 +166,21 @@ mouse_filter = 1
 text = "Input Action"
 
 [node name="InputActionLineEdit" type="LineEdit" parent="HSplitContainer/VBoxContainer/ScrollContainer/Settings/Shutter/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer6" type="HBoxContainer" parent="HSplitContainer/VBoxContainer/ScrollContainer/Settings/Shutter/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HSplitContainer/VBoxContainer/ScrollContainer/Settings/Shutter/VBoxContainer/HBoxContainer6"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+tooltip_text = "Set an Input Action to show/hide the shutter from anywhere, including the Play window, even while it's hidden"
+mouse_filter = 1
+text = "Toggle shutter Input Action"
+
+[node name="ToggleShutterInputActionLineEdit" type="LineEdit" parent="HSplitContainer/VBoxContainer/ScrollContainer/Settings/Shutter/VBoxContainer/HBoxContainer6"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
