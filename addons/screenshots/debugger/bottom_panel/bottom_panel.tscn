@@ -178,7 +178,7 @@ custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 tooltip_text = "Set an Input Action to show/hide the shutter from anywhere, including the Play window, even while it's hidden"
 mouse_filter = 1
-text = "Toggle shutter Input Action"
+text = "Input Show/Hide Shutter"
 
 [node name="ToggleShutterInputActionLineEdit" type="LineEdit" parent="HSplitContainer/VBoxContainer/ScrollContainer/Settings/Shutter/VBoxContainer/HBoxContainer6"]
 unique_name_in_owner = true
