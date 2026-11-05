@@ -28,6 +28,7 @@ Configure the addon from its Debugger panel. Settings are stored at `settings.cf
 
 - **Shutter sounds**: Whether to play shutter sound effect
 - **Input Action**: Set an Input Action to trigger a screenshot
+- **Input Show/Hide shutter**: Easily show or hide the shutter with an action
 
 ### Resolution
 - Specify one or more target sizes. The addon calls `DisplayServer.window_set_size()` for each size before capturing.
