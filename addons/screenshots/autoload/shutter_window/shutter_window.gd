@@ -120,6 +120,10 @@ func save_image() -> void:
 	var play_shutter_sounds = _local_data.settings.load_value("misc", "ShutterSoundsCheckBox", true)
 	# Save the screenshot
 	var image = get_tree().root.get_viewport().get_texture().get_image()
+	if get_tree().root.get_viewport().use_hdr_2d:
+		if image.get_format() != Image.FORMAT_RGB8:
+			image.convert(Image.FORMAT_RGB8)
+		image.linear_to_srgb()
 	image_captured.emit(image)
 
 	if play_shutter_sounds:
