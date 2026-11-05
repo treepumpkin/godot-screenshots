@@ -23,24 +23,19 @@ func _ready() -> void:
 	old_position = position
 	var only_run_in_editor = _local_data.settings.load_value("misc", "OnlyRunInEditorCheckBox", true)
 	visible = _local_data.settings.load_value("misc", "ShowShutterCheckBox", true)
-
+	
 	if only_run_in_editor and not OS.has_feature("editor"):
 		set_process_input(false)
 		set_process(false)
 		hide()
 		return
-
+		
 	_input_action = _local_data.settings.load_value("misc", "InputActionLineEdit", "")
 	_toggle_shutter_action = _local_data.settings.load_value("misc", "ToggleShutterInputActionLineEdit", "")
 	%ShutterButton.pressed.connect(take_burst)
 	close_requested.connect(_on_close_requested)
 
 
-## Checked every frame (not via _input) because the shutter is its own native
-## Window: once hidden, it stops receiving OS input entirely, and its _input()
-## only ever fires while it has OS focus anyway. Input.is_action_just_pressed
-## reflects global key state for the whole process, so this lets the toggle be
-## pressed from the main Play window even while the shutter is hidden.
 func _process(_delta: float) -> void:
 	if _toggle_shutter_action.is_empty() or not InputMap.has_action(_toggle_shutter_action):
 		return
@@ -85,7 +80,7 @@ func take_burst() -> void:
 	var locales = _local_data.settings.load_value("misc", "Locales", ["none"])
 	var previous_locale = TranslationServer.get_locale()
 	hide()
-
+	
 	var tree = get_tree()
 	var game_was_paused = tree.paused
 	if pause_game:
@@ -135,15 +130,16 @@ func save_image() -> void:
 	var timestamp = Time.get_time_string_from_system()
 	var play_shutter_sounds = _local_data.settings.load_value("misc", "ShutterSoundsCheckBox", true)
 	# Save the screenshot
-	var image = get_tree().root.get_viewport().get_texture().get_image()
+	# var image = get_tree().root.get_viewport().get_texture().get_image()
+	var image = get_parent().get_viewport().get_texture().get_image()
 	image_captured.emit(image)
-
+	
 	if play_shutter_sounds:
 		%AudioStreamPlayer.play()
 	var save_folder: String = _local_data.settings.load_value("misc", "PathLineEdit", "user://screenshots")
 	var project_title = ProjectSettings.get_setting("application/config/name")
 	var screenshot_size = image.get_size()
-
+	
 	# Build the save path with optional subfolders
 	var target_folder = save_folder
 	if _local_data.settings.load_value("misc", "UseSubFoldersCheckBox", false):
@@ -151,55 +147,55 @@ func save_image() -> void:
 		var timestamp_folder = "%s_%s" % [project_title, timestamp.replace(":", "-")]
 		var locale_folder = locale
 		var resolution_folder = "%dx%d" % [screenshot_size.x, screenshot_size.y]
-
+		
 		target_folder = save_folder.path_join(timestamp_folder).path_join(locale_folder).path_join(resolution_folder)
-
+	
 	# Ensure target folder exists
 	if not DirAccess.dir_exists_absolute(target_folder):
 		DirAccess.make_dir_recursive_absolute(target_folder)
-
+	
 	var formats = {
 		"PNGCheckBox": ["png", image.save_png, true],
 		"JPGCheckBox": ["jpg", image.save_jpg, false],
-		"WEBPCheckBox": ["webp", image.save_webp, false],
+		"WEBPCheckBox": ["webp", image.save_webp, false]
 	}
-
+	
 	for setting_key in formats:
 		var default = formats[setting_key][2]
 		if _local_data.settings.load_value("misc", setting_key, default):
 			var extension = formats[setting_key][0]
 			var save_method = formats[setting_key][1]
-
+			
 			var filename: String
 			if _local_data.settings.load_value("misc", "UseSubFoldersCheckBox", false):
 				filename = "%s_%s" % [project_title, timestamp.replace(":", "-")]
 			else:
 				filename = "%s_%s_%s_%dx%d" % [project_title, timestamp.replace(":", "-"), locale, screenshot_size.x, screenshot_size.y]
-
+			
 			var file_path = target_folder.path_join("%s.%s" % [filename, extension])
-
+			
 			# Get unique filepath to avoid overwriting
 			file_path = get_unique_filepath(file_path)
-
+			
 			save_method.call(file_path)
 			EngineDebugger.send_message("screenshot:taken", [file_path, timestamp, locale])
-
+			
 			print_rich("[Screenshots] Saved at: [url=%s]%s[/url]" % [ProjectSettings.globalize_path(file_path.get_base_dir()), file_path])
-
-
+			
 func get_unique_filepath(base_path: String) -> String:
 	if not FileAccess.file_exists(base_path):
 		return base_path
-
+	
 	var dir = base_path.get_base_dir()
 	var filename = base_path.get_file().get_basename()
 	var extension = base_path.get_extension()
-
+	
 	var counter = 1
 	var new_path = "%s/%s_%d.%s" % [dir, filename, counter, extension]
-
+	
 	while FileAccess.file_exists(new_path):
 		counter += 1
 		new_path = "%s/%s_%d.%s" % [dir, filename, counter, extension]
-
+	
 	return new_path
+		
