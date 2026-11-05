@@ -13,6 +13,7 @@ signal image_captured(image: Image)
 signal burst_ended
 
 var _input_action: String
+var _toggle_shutter_action: String
 
 
 func _ready() -> void:
@@ -25,12 +26,27 @@ func _ready() -> void:
 
 	if only_run_in_editor and not OS.has_feature("editor"):
 		set_process_input(false)
+		set_process(false)
 		hide()
 		return
 
 	_input_action = _local_data.settings.load_value("misc", "InputActionLineEdit", "")
+	_toggle_shutter_action = _local_data.settings.load_value("misc", "ToggleShutterInputActionLineEdit", "")
 	%ShutterButton.pressed.connect(take_burst)
 	close_requested.connect(_on_close_requested)
+
+
+## Checked every frame (not via _input) because the shutter is its own native
+## Window: once hidden, it stops receiving OS input entirely, and its _input()
+## only ever fires while it has OS focus anyway. Input.is_action_just_pressed
+## reflects global key state for the whole process, so this lets the toggle be
+## pressed from the main Play window even while the shutter is hidden.
+func _process(_delta: float) -> void:
+	if _toggle_shutter_action.is_empty() or not InputMap.has_action(_toggle_shutter_action):
+		return
+	if Input.is_action_just_pressed(_toggle_shutter_action):
+		visible = not visible
+		_local_data.settings.save("misc", "ShowShutterCheckBox", visible)
 
 
 func _on_close_requested() -> void:
